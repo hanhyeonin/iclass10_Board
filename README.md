@@ -17,6 +17,8 @@
   * 
 https://docs.google.com/spreadsheets/d/1svu84vUmiMjZooO7ixXJ45pa46d1mX262o0yKI532_E/edit#gid=717910587  링크 2번부터 실행하세요. 
 
+  * git fetch - 원격 저장소의 master 변경커밋 내용 확인
+  * git pull - 원격 저장소의 변경 commit 가져오기
 ### 4. 빌드도구 
   * gradle 또는 maven을 주로 사용 
   * maven 으로 하겠습니다.
