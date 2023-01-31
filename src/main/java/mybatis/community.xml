@@ -1,1 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="community">
+ <!-- namespace : 여기에 정의된 id를 그룹으로 묶어줍니다. -->
+ <!-- Community.java vo 클래스를 정의하고 하세요.
+ 	1. 메인글 쓰기 : insert
+ 	2. 메인글 내용 수정 : update
+ 	3. 메인글 삭제 : delete
+ 	4. 메인글 보기 : select
+ 
+  -->
+ 	<insert id="insert" parameterType="org.iclass.vo.Community">
+ 		INSERT INTO community (idx,writer,title,content)
+		VALUES (community_idx_seq.nextval, #{writer},#{title},#{content})
+ 	</insert>
+ 	<update id="update" parameterType="org.iclass.vo.Community">
+ 		update community set content = #{content} where idx = #{idx}
+ 	</update>
+ 	<delete id="delete" parameterType="org.iclass.vo.Community">
+ 		delete from community where idx = #{idx}
+ 	</delete>
+ 	<select id="selectOne" parameterType="org.iclass.vo.Community">
+ 		select * from community where idx = #{idx}
+ 	</select>
+ 	<select id="selectAll" parameterType="org.iclass.vo.Community">
+ 		select * from community 
+ 	</select>
+ </mapper>

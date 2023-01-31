@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="communityComments">
+ <!-- namespace : 여기에 정의된 id를 그룹으로 묶어줍니다. -->
+ <!-- CommunityComments.java vo 클래스를 정의하고 하세요.
+ 	1. 댓글 쓰기 : insert
+ 	2. 댓글 삭제 : delete
+ 
+  -->
+ 	<insert id="insert" parameterType="org.iclass.vo.CommunityComments">
+ 		INSERT INTO communitycomments (idx,mref,writer,content)
+		VALUES (comment_idx_seq.nextval, #{wref},#{writer},#{content})
+ 	</insert>
+ 	<delete id="delete" parameterType="org.iclass.vo.CommunityComments">
+ 		delete from communitycomments where idx = #{idx}
+ 	</delete>
+ </mapper>
