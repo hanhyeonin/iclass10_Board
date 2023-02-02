@@ -12,6 +12,7 @@ CREATE TABLE community(
 );
 
 CREATE SEQUENCE community_idx_seq;
+SELECT community_idx_seq.currval FROM dual;
 
 -- 댓글테이블
 CREATE TABLE communityComments(
@@ -49,6 +50,7 @@ VALUES (community_idx_seq.nextval, '이사나','정회원 공77지','정회원 �
 INSERT INTO community (idx,writer,title,content)
 VALUES (community_idx_seq.nextval, '이사나','정회원 공88지','정회원 안내입니다.');
 
+
 SELECT * FROM community ;
 
 -- 댓글 테이블 데이터
@@ -64,3 +66,27 @@ INSERT INTO communityComments (idx,mref,writer,content)
 VALUES (comment_idx_seq.nextval,9,'김땡땡','하이!!!하이~~');
 
 SELECT * FROM communityComments ;
+
+SELECT community_idx_seq.currval FROM dual;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
