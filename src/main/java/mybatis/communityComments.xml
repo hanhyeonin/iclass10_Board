@@ -9,11 +9,21 @@
  	2. 댓글 삭제 : delete
  
   -->
- 	<insert id="insert" parameterType="org.iclass.vo.CommunityComments">
- 		INSERT INTO communitycomments (idx,mref,writer,content)
-		VALUES (comment_idx_seq.nextval, #{wref},#{writer},#{content})
- 	</insert>
- 	<delete id="delete" parameterType="org.iclass.vo.CommunityComments">
+ 	<insert id="insert" parameterType="org.iclass.vo.CommunityComments" 
+ 		keyProperty="idx" keyColumn="idx" useGeneratedKeys="true">
+ 		INSERT INTO communityComments(idx,mref,writer,content) 
+ 		VALUES (comment_idx_seq.nextval,#{mref},#{writer},#{content})
+ 	</insert> 
+ 	<delete id="delete" parameterType="int">
  		delete from communitycomments where idx = #{idx}
  	</delete>
+ 	<select id="maxOf" resultType="int"><!-- idx가 number(int)타입이라서 resultType="int" -->
+ 		SELECT max(idx) FROM communityComments
+ 	</select>
+ 	<select id="comments" parameterType="long" resultType="org.iclass.vo.CommunityComments">
+ 		SELECT * FROM communityComments WHERE mref = #{mref}   <!-- PK로 조회 -->
+ 	</select>
+ 	<select id="commentsCount" resultType="long" parameterType="org.iclass.vo.CommunityComments">
+ 		select count(*) from communityComments where mref=#{mref}
+ 	</select>
  </mapper>
