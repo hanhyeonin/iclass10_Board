@@ -16,7 +16,6 @@
  	<!-- 오라클은 idx를 시퀀스를 이용하여 값을 만듭니다 useGeneratedKeys="false" -->
  		INSERT INTO community (idx,writer,title,content,ip)
 		VALUES (community_idx_seq.nextval, #{writer},#{title},#{content},#{ip})
-		
  	<!-- insert 후에 증가된 시퀀스값 (현재값) 가져오기 : idx 필드에 저장하기-->
  	<!-- Community 객체의 keyProperty="idx" idx필드에 저장하겠다. -->
  	<selectKey keyProperty="idx" resultType="long" order="AFTER">
@@ -37,11 +36,10 @@
  		UPDATE COMMUNITY
 		SET readcount = readcount+1
 		WHERE idx = #{idx}
- 	</update>
- 	
- 	
- 	<update id="setCommentCount" parameterType="int">
- 		UPDATE community SET commentcount = (SELECT count(*) FROM communityComments WHERE mref=#{mref})
+ 	</update>	
+ 	<update id="setCommentCount" parameterType="long">
+ 		UPDATE community SET commentcount = 
+ 		(SELECT count(*) FROM communityComments WHERE mref=#{mref})
 		WHERE idx = #{mref}
  	</update>
  	
@@ -49,6 +47,7 @@
  	<delete id="delete" parameterType="long">
  		delete from community where idx = #{idx}
  	</delete>
+ 	
  	<select id="selectByIdx" parameterType="long" resultType="org.iclass.vo.Community">
  		SELECT * FROM community WHERE idx = #{idx}   <!-- PK로 조회 -->
  	</select>
@@ -59,12 +58,11 @@
  	<select id="maxOf" resultType="int"><!-- idx가 number(int)타입이라서 resultType="int" -->
  		SELECT max(idx) FROM community
  	</select>
- 	<select id="select10" resultType="org.iclass.vo.Community">
+ 	<select id="pagelist" resultType="org.iclass.vo.Community" parameterType="java.util.Map">
  		SELECT * FROM 
-			(SELECT rownum r ,f.* 
-				from
-				(SELECT * FROM community  ORDER BY idx DESC) f)
-		WHERE r BETWEEN 1 AND 10
+			(SELECT rownum r ,f.* FROM
+					(SELECT * FROM community  ORDER BY idx DESC) f)
+		WHERE r BETWEEN #{start} AND #{end}
  	</select>
  	<select id="list" resultType="org.iclass.vo.Community">
  		select * from community

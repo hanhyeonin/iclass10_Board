@@ -1,6 +1,7 @@
 package org.iclass.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.iclass.vo.Community;
@@ -60,7 +61,7 @@ public class CommunityDao {
 	}
 	
 	// [select] id=count : 전체 메인글의 갯수
-	public int selectCount() {
+	public int count() {
 		SqlSession mapper = SqlSessionBean.getSession();
 		int result = mapper.selectOne("community.count");
 		mapper.commit();
@@ -78,7 +79,7 @@ public class CommunityDao {
 		return result;
 	}
 	
-	// [select] id="select10" : 게시판 글목록은 idx 의 내림차순, rownum(임의생성) 10개씩 조회 
+	// [select] id="" :
 	public List<Community> list(){
 		SqlSession mapper = SqlSessionBean.getSession();
 		List<Community> list = mapper.selectList("community.list");
@@ -86,6 +87,15 @@ public class CommunityDao {
 		mapper.close();
 		return list;
 	}
+	
+	//메인글 목록 가져오기 - 할일 : 한번에(즉 한페이지에) 글 10개씩 가져오도록 변경
+	public List<Community> pagelist(Map<String,Integer> map) {
+		SqlSession mapperSession = SqlSessionBean.getSession();
+		List<Community> list = mapperSession.selectList("community.pagelist",map);
+		mapperSession.close();
+		return list;
+	}
+
 	
 	public int setReadCount(long idx) {
 		SqlSession mapper = SqlSessionBean.getSession();
