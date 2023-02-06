@@ -33,9 +33,10 @@ public class UpdateController implements Controller {
 		int result = dao.update(vo);
 		System.out.println("result = " + result);
 		
-		if(result != 0) {
-			response.sendRedirect("list");
+		if(result == 1) {
+			// 현재페이지 번호전달
+			response.sendRedirect("read?idx="+idx+"&page="+request.getParameter("page"));
 		}else
-			response.sendRedirect(request.getContextPath());
+			response.sendRedirect(request.getContextPath());	// 메인페이지로 이동
 	}
 }

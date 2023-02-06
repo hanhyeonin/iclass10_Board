@@ -33,13 +33,13 @@
 			<li>
 				<c:out value="${vo.idx }"/>
 			</li>
-			<li><a href="read?idx=${vo.idx }" class="title">
+			<li><a href="read?idx=${vo.idx }&page=${paging.currentPage}" class="title">
 					<c:out value="${vo.title }"/>
 				</a>
 		 		..<span style="color:orange;font-size: 80%;">(<c:out value="${vo.commentCount }"/>)
 		 		</span></li>
 			<li>
-				<c:out value="${vo.writer }"/>(<c:out value="${vo.ip }"/>)
+				<c:out value="${vo.writer }"/><%-- (<c:out value="${vo.ip }"/>) --%>
 			</li>
 			<li>
 				<c:out value="${vo.readCount }"/>
@@ -62,7 +62,7 @@
  	</c:forEach>
 	</ul>
 	<div style="float:right;margin:40px;">
-		<a href="write" class="button" >글쓰기</a>
+		<a href="write?page=${paging.currentPage }" class="button" >글쓰기</a>
 		<a href="${pageContext.request.contextPath}" class="button" >홈</a>
 	</div>
 </div>
@@ -75,7 +75,7 @@
 	<hr>
 	<a class="pagenum" href="?page=1">&lt;&lt;</a>   <!--(1) 첫번째 페이지 1번으로 이동 -->
 
-	<!--(2) 이 부분이 제일 복잡합니다. 실행하면서 파악해보세요. -->
+	<!--(2) 이 부분이 제일 복잡합니다. 실행하면서 파악해보세요. -->	<!-- 요청은 ListController가 받음. page파라미터 변경됨 -->
 	<a class="pagenum" href="?page=${paging.startPage-1 }"      
 			style='<c:if test="${paging.startPage==1 }">display:none;</c:if>' >&lt;</a>
 

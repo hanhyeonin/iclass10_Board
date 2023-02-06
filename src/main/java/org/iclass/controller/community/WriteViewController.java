@@ -14,7 +14,9 @@ public class WriteViewController implements Controller{
 	
 	@Override
 	public void handle(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/community/write.jsp");
+		request.setAttribute("page", request.getParameter("page"));
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("write.jsp");
 		dispatcher.forward(request, response);
 	}
 }

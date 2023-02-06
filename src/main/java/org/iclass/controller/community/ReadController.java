@@ -28,6 +28,7 @@ public class ReadController implements Controller{
 		}
 		
 		CommunityDao dao = CommunityDao.getInstance();
+		dao.updateCount(idx);
 		// 조회수 증가
 		dao.setReadCount(idx);
 		Community vo = dao.selectByIdx(idx);
@@ -37,6 +38,9 @@ public class ReadController implements Controller{
 		CommunityCommentsDao cdao = CommunityCommentsDao.getInstance();
 		List<CommunityComments> cmtlist = cdao.comments(idx);
 		request.setAttribute("cmtlist", cmtlist);
+		
+		// 현재 페이지를 list.jsp에 받아서 read.jsp로 전달합니다.
+		request.setAttribute("page", request.getParameter("page"));
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("read.jsp");
 		dispatcher.forward(request, response);

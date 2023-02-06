@@ -20,8 +20,8 @@ public class DeleteController implements Controller {
 		CommunityDao dao = CommunityDao.getInstance();
 		int result = dao.delete(idx);
 		if (result == 1) {
-			// list로 이동
-			response.sendRedirect("list");
+			// 삭제한 글이 있던 페이지로 돌아가기(요청 리다이렉트)
+			response.sendRedirect("list?page="+request.getParameter("page"));
 		}else{
 			// 메인화면으로 이동
 			response.sendRedirect(request.getContextPath());

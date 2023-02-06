@@ -27,7 +27,7 @@ public class WriteController implements Controller {
 				.ip(ip)
 				.build();
 		CommunityDao dao = CommunityDao.getInstance();
-
+		request.setAttribute("page", request.getParameter("page"));
 		long result = dao.insert(vo);
 		if (result != 0) {
 			// list로 이동
