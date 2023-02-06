@@ -17,7 +17,7 @@
 			<input type="hidden" name="page" value="${page}">
 			 <table>
 			 	<tr><th><label>제목</label></th>
-			 		<td><input type="text" name="title" size="50" required></td>
+			 		<td><input type="text" name="title" size="50" required ></td>
 			 	</tr>
 			 	<tr>
 					<th><label>작성자</label></th>
