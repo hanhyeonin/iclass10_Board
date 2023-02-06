@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="newmember">
+ 	
+ 	<select id="listAll" resultType="org.iclass.vo.NewMember">
+ 		SELECT * FROM new_member
+ 	</select>	
+ 	
+ 	<select id="login" parameterType="java.util.Map" resultType="org.iclass.vo.NewMember">	
+ 	<!-- Key 이름 : "id", "password" 2개를 지정한 Map -->
+ 		SELECT * FROM new_member  
+ 		WHERE id=#{id} and password=#{password}			<!-- <"id",momo> <"password",1212> -->
+ 		<!-- TEST 할때 map에 담긴 <Key, Value>
+ 			SELECT id, name, email FROM new_member
+ 			WHERE id='momo' AND password = '1212'; 와 동일
+ 		 -->
+ 	</select>
+ </mapper>
+ 
+ 
+ 
+ 
+ 
+ 

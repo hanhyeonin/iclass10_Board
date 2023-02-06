@@ -11,6 +11,9 @@ import org.iclass.controller.community.UpdateController;
 import org.iclass.controller.community.UpdateViewController;
 import org.iclass.controller.community.WriteController;
 import org.iclass.controller.community.WriteViewController;
+import org.iclass.controller.login.LoginActionController;
+import org.iclass.controller.login.LoginViewController;
+import org.iclass.controller.login.LogoutController;
 
 public class RequestControllerMapping {
 
@@ -24,7 +27,7 @@ public class RequestControllerMapping {
 				
 				//게시판 글 상세보기 ,수정하기,삭제하기
 				mapping.put(new RequestKeyValue("/community/read", "GET"), new ReadController() );
-				mapping.put(new RequestKeyValue("/community/comment", "POST"), new CommentController() );
+				mapping.put(new RequestKeyValue("/community/comments", "POST"), new CommentController() );
 				mapping.put(new RequestKeyValue("/community/update","GET"), new UpdateViewController() );
 				mapping.put(new RequestKeyValue("/community/update","POST"), new UpdateController() );
 				mapping.put(new RequestKeyValue("/community/delete","GET"), new DeleteController() );
@@ -38,9 +41,9 @@ public class RequestControllerMapping {
 				mapping.put(new RequestKeyValue("/member/modify","POST"), null);
 				
 				//로그인
-				mapping.put(new RequestKeyValue("/login", "GET"), null);
-				mapping.put(new RequestKeyValue("/login", "POST"), null);
-				mapping.put(new RequestKeyValue("/logout", "GET"), null);
+				mapping.put(new RequestKeyValue("/login", "GET"), new LoginViewController());
+				mapping.put(new RequestKeyValue("/login", "POST"), new LoginActionController());
+				mapping.put(new RequestKeyValue("/logout", "GET"), new LogoutController());
 	}
 	
 	// url, method 필드를 저장하는 key 를 전달받아 HashMap에서 value(컨트롤러)를 리턴
