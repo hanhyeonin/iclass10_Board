@@ -33,17 +33,24 @@
 
 		</div>
 		<div style="float: right; margin: 40px; padding-right: 100px;">
-			<a href="new" class="button">쓰기</a>
-			<a href="${pageContext.request.contextPath}" class="button">홈</a>
+			<a href="new" class="button">쓰기</a> <a
+				href="${pageContext.request.contextPath}" class="button">홈</a>
 		</div>
 	</main>
 </body>
 </html>
 
 <!-- 위지윅 textarea 라이브러리 참고 : https://shxrecord.tistory.com/122 -->
-
-
-
+<!-- 
+			@SuppressWarnings("unchecked")
+			Enumeration<String> files = multi_request.getFileNames();	//file 타입 파일명 모두 가져오기
+			while(files.hasMoreElements()) {
+				String f = files.nextElement();			//afile3,afile2,afile1
+				String f = files.nextElement();			
+				String name= multi_request.getFilesystemName(f);		//업로드된 파일명 가져오기
+				sb.append(name).append(",");		//파일명 여러개를 , 으로 구분해서 한 컬럼에 저장
+			}
+		 -->
 
 
 
